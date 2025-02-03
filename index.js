@@ -1,9 +1,11 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 
-fs.readFile('./assets/text.txt', 'utf8', (error, data) => {
-  if (error) {
+async function readTextFile(pathToTextFile) {
+  try {
+    const data = await fs.readFile(pathToTextFile, 'utf8');
+    console.log(data);
+  } catch (error) {
     console.log(error);
-    return;
   }
-  console.log(data);
-});
+}
+readTextFile('./assets/text.txt');
